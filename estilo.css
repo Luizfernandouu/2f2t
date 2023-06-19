@@ -1,89 +1,150 @@
+/* Theming */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"); /* import font */
+:root{
+    --white: #f9f9f9;
+    --black: #1f1f21;
+    --gray: #877979;
+} /* variables*/
+
+/* Reset */
 *{
     margin: 0;
-    border: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-.a {
+body{
+    background-color: var(--white);
+    font-family: "Poppins", sans-serif;
+}
+a{
     text-decoration: none;
 }
-.ul {
+ul{
     list-style: none;
 }
-.header {
-    width: 100%;
-    background: aquamarine;
-    position: static;
+
+/* Header */
+.header{
+    background-color: var(--black);
+    box-shadow: 1px 1px 5px 0px var(--gray);
+    position: sticky;
     top: 0;
+    width: 100%;
 }
-.logo {
+/* Logo */
+.logo{
     display: inline-block;
-    color: rgb(0, 238, 255);
+    color: var(--white);
 }
+
 #logo {
     width: 10vh;
     margin: 5px;
 }
-.nav {
+
+/* Nav menu */
+.nav{
     width: 100%;
     height: 100%;
     position: fixed;
-    background:rgb(43, 43, 119) ;
+    background-color: var(--black);
     overflow: hidden;
+
 }
-.menu a {
+.menu a{
     display: block;
     padding: 30px;
-    color: darkkhaki;
+    color: var(--white);
 }
-.menu a:hover {
-    background: rgb(43, 43, 119);
+.menu a:hover{
+    background-color: var(--gray);
 }
-.nav { 
-    max-width: 0;
-    transition: max height .5s "ease-out";
+.nav{
+    max-height: 0;
+    transition: max-height .5s ease-out;
 }
-.hamburger {
+
+/* Menu Icon */
+.hamb{
     cursor: pointer;
     float: right;
     padding: 35px 20px;
-}
+}/* Style label tag */
+
 .hamb-line {
-    background-color: black;
+    background: var(--white);
     display: block;
     height: 2px;
     position: relative;
     width: 24px;
-}
 
+} /* Style span tag */
 
-.conteudo{
+.hamb-line::before,
+.hamb-line::after{
+    background: var(--white);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
     width: 100%;
 }
+.hamb-line::before{
+    top: 5px;
+}
+.hamb-line::after{
+    top: -5px;
+}
+.side-menu {
+    display: none;
+} /* Hide checkbox */
 
-.rodape{
-    width: 100%;
-    text-align: center;
-    background:rgb(255, 255, 255) ;
+
+
+/* Toggle menu icon */
+.side-menu:checked ~ nav{
+    max-height: 100%;
+}
+.side-menu:checked ~ .hamb .hamb-line {
+    background: transparent;
+}
+.side-menu:checked ~ .hamb .hamb-line::before {
+    transform: rotate(-45deg);
+    top:0;
+}
+.side-menu:checked ~ .hamb .hamb-line::after {
+    transform: rotate(45deg);
+    top:0;
 }
 
-.img-mobile {
- width: 100%;
-}
 
 
-@media screen and (min-width: 768px) {
-    .menu{
-        height: 100px;
-        background-color: lightblue;
+/* Responsiveness */
+@media (min-width: 768px) {
+    .nav{
+        max-height: none;
+        top: 0;
+        position: relative;
+        float: right;
+        width: fit-content;
+        background-color: transparent;
     }
-    .conteudo-home{
-        display: flex;
+    .menu li{
+        float: left;
     }
-}
+    .menu a:hover{
+        background-color: transparent;
+        color: var(--gray);
 
-@media screen and (min-width: 1280px) {
-    .menu{
-        height: 150px;
-        background-color: plum;
+    }
+
+    .hamb{
+        display: none;
+    }
+
+    #logo {
+        width: 15vh;
+        margin: 5px;
     }
 }
